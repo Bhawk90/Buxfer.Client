@@ -16,6 +16,12 @@ namespace Buxfer.Client
                 case TransactionType.SharedBill: return "sharedBill";
                 case TransactionType.Loan: return "loan";
                 case TransactionType.Settlement: return "settlement";
+                case TransactionType.Payment: return "payment";
+                case TransactionType.InvestmentBuy: return "investment_buy";
+                case TransactionType.InvestmentSell: return "investment_sell";
+                case TransactionType.InvestmentDividend: return "investment_dividend";
+                case TransactionType.CapitalGain: return "capital_gain";
+                case TransactionType.CapitalLoss: return "capital_loss";
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, "Cannot determine transactio type");
             }

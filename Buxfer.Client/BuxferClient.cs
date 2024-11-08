@@ -125,6 +125,12 @@ namespace Buxfer.Client
                 case PaidForFriendTransaction p: return await AddTransaction(p);
                 case RefundTransaction r: return await AddTransaction(r);
                 case SharedBillTransaction s: return await AddTransaction(s);
+                case CapitalGainTransaction cg: return await AddTransaction(cg);
+                case CapitalLossTransaction cl: return await AddTransaction(cl);
+                case InvestmentBuyTransaction ib: return await AddTransaction(ib);
+                case InvestmentDividendTransaction id: return await AddTransaction(id);
+                case InvestmentSellTransaction invs: return await AddTransaction(invs);
+                case PaymentTransaction pay: return await AddTransaction(pay);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(transaction), "Unknown transaction type");
             }
@@ -230,6 +236,66 @@ namespace Buxfer.Client
                 r.AddIfNotEmpty("paidBy", transaction.PaidBy);
             });
         }
+        
+        /// <summary>
+        ///     Adds capital gain transaction
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Transaction creation status</returns>
+        public async Task<CapitalGainTransaction> AddTransaction(CapitalGainTransaction transaction)
+        {
+            return await AddTransaction<CapitalGainTransaction>(transaction);
+        }
+        
+        /// <summary>
+        ///     Adds capital loss transaction
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Transaction creation status</returns>
+        public async Task<CapitalLossTransaction> AddTransaction(CapitalLossTransaction transaction)
+        {
+            return await AddTransaction<CapitalLossTransaction>(transaction);
+        }
+        
+        /// <summary>
+        ///     Adds investment buy transaction
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Transaction creation status</returns>
+        public async Task<InvestmentBuyTransaction> AddTransaction(InvestmentBuyTransaction transaction)
+        {
+            return await AddTransaction<InvestmentBuyTransaction>(transaction);
+        }
+        
+        /// <summary>
+        ///     Adds investment dividend transaction
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Transaction creation status</returns>
+        public async Task<InvestmentDividendTransaction> AddTransaction(InvestmentDividendTransaction transaction)
+        {
+            return await AddTransaction<InvestmentDividendTransaction>(transaction);
+        }
+        
+        /// <summary>
+        ///     Adds investment sell transaction
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Transaction creation status</returns>
+        public async Task<InvestmentSellTransaction> AddTransaction(InvestmentSellTransaction transaction)
+        {
+            return await AddTransaction<InvestmentSellTransaction>(transaction);
+        }
+        
+        /// <summary>
+        ///     Adds payment transaction
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>Transaction creation status</returns>
+        public async Task<PaymentTransaction> AddTransaction(PaymentTransaction transaction)
+        {
+            return await AddTransaction<PaymentTransaction>(transaction);
+        }
 
         private void AddCreationRequest(IRestRequest request, Transaction transaction)
         {
@@ -289,7 +355,6 @@ namespace Buxfer.Client
                     case TransactionType.PaidForFriend: return e.ToPaidForFriend();
                     case TransactionType.SharedBill: return e.ToPaidForFriend();
                     case TransactionType.Loan: return e.ToLoan();
-                    case TransactionType.Settlement: return e.ToGeneral();
                     default:
                         return e.ToGeneral();
                 }

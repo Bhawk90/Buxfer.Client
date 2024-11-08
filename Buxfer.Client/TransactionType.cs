@@ -43,6 +43,36 @@ namespace Buxfer.Client
         /// <summary>
         ///     A settlement.
         /// </summary>
-        Settlement
+        Settlement,
+        
+        /// <summary>
+        /// A payment.
+        /// </summary>
+        Payment,
+        
+        /// <summary>
+        /// An investment buy.
+        /// </summary>
+        InvestmentBuy,
+        
+        /// <summary>
+        /// An investment sell.
+        /// </summary>
+        InvestmentSell,
+        
+        /// <summary>
+        /// An investment dividend.
+        /// </summary>
+        InvestmentDividend,
+        
+        /// <summary>
+        /// A capital gain.
+        /// </summary>
+        CapitalGain,
+        
+        /// <summary>
+        /// A capital loss.
+        /// </summary>
+        CapitalLoss
     }
 }
