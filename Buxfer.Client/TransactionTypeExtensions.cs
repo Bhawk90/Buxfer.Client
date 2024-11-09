@@ -23,7 +23,7 @@ namespace Buxfer.Client
                 case TransactionType.CapitalGain: return "capital_gain";
                 case TransactionType.CapitalLoss: return "capital_loss";
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, "Cannot determine transactio type");
+                    throw new ArgumentOutOfRangeException(nameof(type), type, "Cannot determine transaction type");
             }
         }
     }
